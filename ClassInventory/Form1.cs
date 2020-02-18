@@ -37,7 +37,16 @@ namespace ClassInventory
             label1.Text = "";
 
             // TODO - display message to indicate addition made
-            label1.Text = "Finished";
+            foreach (NewPlayer informationList in data)
+            {
+                label1.Text += informationList.name + " " + informationList.age + " " + informationList.team + " " + informationList.position + "\n";
+            }
+
+            //Reset all input boxes
+            c.Text = "";
+            ageInput.Text = "";
+            teamInput.Text = "";
+            positionInput.Text = "";
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -47,8 +56,18 @@ namespace ClassInventory
             //---------------------------
 
             // TODO - if object is in list remove it
+            string removes;
+            removes = removeInput.Text;
 
+            int index = data.FindIndex(x => x.name == removes);
+
+            if (index >= 0)
+            {
+                data.RemoveAt(index);
+            }
             // TODO - display message to indicate deletion made
+            label1.Text = "Removed";
+
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -58,6 +77,11 @@ namespace ClassInventory
             //---------------------------
 
             // TODO - if object entered exists in list show it
+            string searchValue;
+            searchValue = textBox1.Text;
+
+
+
             // TODO - else show not found message
         }
 
@@ -70,10 +94,7 @@ namespace ClassInventory
             // TODO - show all objects in list
             
 
-            foreach (NewPlayer informationList in data)
-            {
-                label1.Text += informationList.name + " " + informationList.age + " " + informationList.team + " " + informationList.position + "\n";
-            }
+            
         }
     }
 }
