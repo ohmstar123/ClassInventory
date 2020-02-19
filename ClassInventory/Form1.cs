@@ -64,9 +64,14 @@ namespace ClassInventory
             if (index >= 0)
             {
                 data.RemoveAt(index);
+                label1.Text = "Removed";
+            }
+            else
+            {
+                label1.Text = "Not in the list";
             }
             // TODO - display message to indicate deletion made
-            label1.Text = "Removed";
+            
 
         }
 
@@ -80,7 +85,19 @@ namespace ClassInventory
             string searchValue;
             searchValue = textBox1.Text;
 
+            int index = data.FindIndex(x => x.name == searchValue);
 
+            
+
+            if (index >= 0)
+            {
+                label1.Text = data[index].name + " " + data[index].age + " " + data[index].team + " " + data[index].position + "\n";
+                
+            }
+            else
+            {
+                label1.Text = "Not in the list";
+            }
 
             // TODO - else show not found message
         }
@@ -92,9 +109,14 @@ namespace ClassInventory
             //---------------------------
 
             // TODO - show all objects in list
-            
 
-            
+            label1.Text = "";
+
+            foreach (NewPlayer informationList in data)
+            {
+                label1.Text += informationList.name + " " + informationList.age + " " + informationList.team + " " + informationList.position + "\n";
+            }
+
         }
     }
 }
